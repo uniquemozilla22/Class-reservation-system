@@ -8,9 +8,11 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "nodemon backend"
+    "server": "nodemon backend",
+    "start":" concurrently 'npm run server' 'npm run dev '"
   },
   "dependencies": {
+    "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "nodemon": "^3.0.3",
