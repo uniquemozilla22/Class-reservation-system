@@ -1,0 +1,4 @@
+build_env_variables:
+  GOOGLE_NODE_RUN_SCRIPTS: ""
+runtime: nodejs18
+entrypoint: npm start

@@ -9,12 +9,16 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "nodemon backend",
-    "start":" concurrently 'npm run server' 'npm run dev '"
+    "start": " concurrently 'npm run server' 'npm run dev '",
+    "fix": "gts fix",
+    "clean": "gts clean",
+    "deploy": "gcloud app deploy"
   },
   "dependencies": {
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "gts": "^5.3.0",
     "nodemon": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -28,5 +32,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "vite": "^5.0.8"
+  },
+  "engines": {
+    "node": "^18"
   }
 }
