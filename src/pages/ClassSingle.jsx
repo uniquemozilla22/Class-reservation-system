@@ -1,0 +1,3 @@
+const ClassSingle = () => {
+  return <></>;
+};

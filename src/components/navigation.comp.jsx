@@ -1,6 +1,6 @@
 const Navigation = () => {
   return (
-    <ul className="ml-auto flex items-center">
+    <ul className="ml-auto flex items-center bg-secondary w-full">
       <li className="mr-1 dropdown">
         <button
           type="button"
