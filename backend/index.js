@@ -2,6 +2,7 @@ import  express from 'express'
 import cors from 'cors'
 import 'dotenv/config' 
 import logger from './utils/logger.js'
+import ClassRouter from './Routes/classes.route.js'
 
 const app = express()
 
@@ -14,6 +15,10 @@ import("./database/connect.js")
 app.get("/",(req,res)=>{
     res.send({message:"Application API is running "})
 })
+
+
+app.use("/classes", ClassRouter)
+
 
 const server  = app.listen(8080, ()=> logger.info("Application is running on http://localhost:8080"))
 

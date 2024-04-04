@@ -4,14 +4,14 @@ import mysql from 'mysql2'
 import logger from '../utils/logger.js'
 
 
-const connection = mysql.createConnection({
+const database = mysql.createConnection({
     host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE
 })
 
-connection.connect((error)=>{
+database.connect((error)=>{
     if(error){
         logger.error(`Database Connection error : ${ error.message }`)
         return;
@@ -21,5 +21,7 @@ connection.connect((error)=>{
     }
 })
 
+
+export default database
 
 

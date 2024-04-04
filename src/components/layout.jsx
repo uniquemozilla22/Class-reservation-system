@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
           </button>
           <Navigation />
         </div>
-        <div style={{ marginLeft: "18rem" }}>{children}</div>
+        <div style={{ paddingLeft: "18rem" }}>{children}</div>
       </main>
     </div>
   );
