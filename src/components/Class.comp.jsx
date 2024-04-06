@@ -1,14 +1,15 @@
-import { ReactPropTypes } from "react";
-
 const ClassItem = ({
-  image = "",
-  title = "",
-  description = "",
+  image = "https://source.unsplash.com/random/",
+  title,
+  description,
   isAvailable = false,
 }) => {
   return (
-    <div className="card bg-base-100 shadow-xl">
-      <figure>
+    <div className="card overflow-hidden bg-base-100 shadow-xl max-w-[30rem] max-h-[30rem]">
+      <figure
+        className="overflow-hidden"
+        style={{ height: "500px", width: "500px" }}
+      >
         <img src={image} alt={title} />
       </figure>
       <div className="card-body">
