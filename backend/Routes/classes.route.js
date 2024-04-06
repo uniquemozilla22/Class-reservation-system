@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createAClass, deleteAClass, getAllClasses, updateAClass } from "../controller/class.controller.js";
-import { deleteRoomByRoomNumber, getRoomByName, updateRoomByRoomNumber } from "../database/Querys/index.js";
+import { deleteRoomByRoomNumber, getRoomByName, updateRoomByRoomNumber } from "../database/Querys/classes.js";
 
 const ClassRouter = Router();
 

@@ -1,4 +1,5 @@
-import  { deleteRoomByRoomNumber, fetchAllClasses, getBuildingByName, getRoomByName, insertIntoRoomWithBuildingIDAndCampusID, updateRoomByRoomNumber } from "../database/Querys/index.js";
+import {  getBuildingIDByName } from "../database/Querys/building.js";
+import  { deleteRoomByRoomNumber, fetchAllClasses, getRoomByName, insertIntoRoomWithBuildingIDAndCampusID, updateRoomByRoomNumber } from "../database/Querys/classes.js";
 
 export const getAllClasses = async ()=>{
     const response  =await fetchAllClasses()
@@ -13,7 +14,7 @@ export const createAClass = async ({room_number, capacity, available ="available
             console.log(roomData)
             return roomData
         }
-        const buildingRes  = await getBuildingByName(building_name)
+        const buildingRes  = await getBuildingIDByName(building_name)
         const building_id  = buildingRes.data.building_id 
         const response = await insertIntoRoomWithBuildingIDAndCampusID([room_number, capacity, available, building_id])
         const {data} = await getRoomByName(room_number)
