@@ -7,13 +7,14 @@ export const getAllClasses = () => new Promise((resolve, reject)=>{
             reject({sucess:false ,message:"Fetching from the room error ", data:error})
         }
         resolve({sucess:true,message:"Fetching from the room success ", data:result})
-    });
+        });
 })
 
 
 
-export const bookAClass = () =>{
+export const bookAClass = ({room_name, capacity, available ="available", building_name, campus_name}) =>{
     
+
 }
 
 
