@@ -22,4 +22,9 @@ const logger = winston.createLogger({
   ],
 });
 
+export const HTTPLogger = (method) =>(req,res)=>{
+  logger.info(`${req.originalUrl} ${req.method} ----- ${req.body && JSON.stringify(req.body)}`)
+  return method(req,res)
+}
+
 export default logger;

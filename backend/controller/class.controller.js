@@ -1,21 +1,20 @@
-import QUERY from "../database/Querys/index.js";
-import database from "../database/connect.js"
+import  { fetchAllClasses, getBuildingByName, getCampusByName, getRoomByName, insertIntoRoomWithBuildingIDAndCampusID } from "../database/Querys/index.js";
 
-export const getAllClasses = () => new Promise((resolve, reject)=>{
-    database.query(QUERY.getRoom,(error, result) =>{
-        if(error){
-            reject({sucess:false ,message:"Fetching from the room error ", data:error})
-        }
-        resolve({sucess:true,message:"Fetching from the room success ", data:result})
-        });
-})
-
-
-
-export const bookAClass = ({room_name, capacity, available ="available", building_name, campus_name}) =>{
-    
-
+export const getAllClasses = async ()=>{
+    const response  =await fetchAllClasses()
+    return response
 }
+
+export const createAClass = async ({room_number, capacity, available ="available", building_name}) =>{
+    const buildingRes  = await getBuildingByName(building_name)
+    const building_id  = buildingRes.data.building_id 
+    const response = await insertIntoRoomWithBuildingIDAndCampusID([room_number, capacity, available, building_id])
+    const {data} = await getRoomByName(room_number)
+    return {...response, data}
+}
+
+
+
 
 
 

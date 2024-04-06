@@ -1,7 +1,7 @@
 import  express from 'express'
 import cors from 'cors'
 import 'dotenv/config' 
-import logger from './utils/logger.js'
+import logger, { HTTPLogger } from './utils/logger.js'
 import ClassRouter from './Routes/classes.route.js'
 
 const app = express()
@@ -17,7 +17,10 @@ app.get("/",(req,res)=>{
 })
 
 
-app.use("/classes", ClassRouter)
+
+
+
+app.use("/classes", HTTPLogger(ClassRouter))
 
 
 const server  = app.listen(8080, ()=> logger.info("Application is running on http://localhost:8080"))
