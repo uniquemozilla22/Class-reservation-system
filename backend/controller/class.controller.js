@@ -1,4 +1,4 @@
-import  { fetchAllClasses, getBuildingByName, getRoomByName, insertIntoRoomWithBuildingIDAndCampusID } from "../database/Querys/index.js";
+import  { deleteRoomByRoomNumber, fetchAllClasses, getBuildingByName, getRoomByName, insertIntoRoomWithBuildingIDAndCampusID, updateRoomByRoomNumber } from "../database/Querys/index.js";
 
 export const getAllClasses = async ()=>{
     const response  =await fetchAllClasses()
@@ -8,8 +8,7 @@ export const getAllClasses = async ()=>{
 export const createAClass = async ({room_number, capacity, available ="available", building_name}) =>{
     try{
         const room = await getRoomByName(room_number)
-        console.log(room.data.length)
-        if(room.data.length !== 0){
+        if(room.data && room.data.length !== 0){
             const roomData = {success:false , message:`There is already that room number registered on ${room.data.building_name} within ${room.data.campus_name}`, data:room.data}
             console.log(roomData)
             return roomData
@@ -26,7 +25,16 @@ export const createAClass = async ({room_number, capacity, available ="available
 }
 
 
+export const updateAClass = async (room_number ,data) =>{
+    let response = await updateRoomByRoomNumber(room_number ,data)
+    let getUpdatedRoom = await getRoomByName(room_number)
+    response.data = getUpdatedRoom.data
+    return response
+}
 
-
+export const deleteAClass = async (room_number ) =>{
+    let response = await deleteRoomByRoomNumber(room_number )
+    return response
+}
 
 
