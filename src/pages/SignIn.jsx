@@ -20,7 +20,17 @@ const SignIn = () => {
             "WELCOME TO SIGN IN PAGE!"
             <br></br>
             <br></br>
-            <button style = {styles.back}onClick={() => goToBackPage()}>BACK</button>
+            Username <input type="text"></input>
+            <br></br>
+            <br></br>
+            Password <input type="password"></input> 
+            <br></br>
+            <br></br>
+            <button style = {styles.back}onClick={() => goToBackPage()}>Login</button>
+            <br></br>
+            <br></br>
+            <button style = {styles.back}onClick={() => goToBack()}>BACK</button>
+                        
         </div>
     );
 };
