@@ -50,7 +50,7 @@ export const getRoomByName= (room_name) => new Promise((resolve,reject)=>{
         if(error){
             reject({sucess:false ,message:"Getting  the room by id error ", data:error})
         }
-        resolve({sucess:true,message:"Getting the room by id success ", data:result})
+        resolve({sucess:true,message:"Getting the room by id success ", data:result[0]})
 })
 })
 

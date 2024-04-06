@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { createAClass, getAllClasses } from "../controller/class.controller.js";
-import logger from "../utils/logger.js";
 
 const ClassRouter = Router();
 
@@ -17,6 +16,7 @@ ClassRouter.post("/", async (req,res)=>{
   try{
     const {building_name , campus_name , capacity , room_number} = req.body
     const data = await createAClass({building_name , campus_name , capacity , room_number})
+    console.log(data)
     res.send(data)
   }
   catch(error) {
