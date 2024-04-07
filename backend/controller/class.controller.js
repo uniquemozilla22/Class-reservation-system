@@ -14,6 +14,7 @@ export const createAClass = async ({room_number, capacity, available ="available
             console.log(roomData)
             return roomData
         }
+        console.log(building_name)
         const buildingRes  = await getBuildingIDByName(building_name)
         const building_id  = buildingRes.data.building_id 
         const response = await insertIntoRoomWithBuildingIDAndCampusID([room_number, capacity, available, building_id])

@@ -3,8 +3,6 @@ import database from "../connect.js";
 const QUERY = {
   getRoom:
     "SELECT *  FROM room JOIN building ON room.building_id = building.building_id JOIN campus ON building.campus_id = campus.campus_id",
-  
-  
   insertRoomData:
     "INSERT INTO room(room_number, capacity, availability, building_id) VALUES(?,?,?,?)",
   getRoomByName:
@@ -30,28 +28,6 @@ export const fetchAllClasses = () =>
       });
     });
   });
-
-// export const getBuildingByName = (building_name) =>
-//   new Promise((resolve, reject) => {
-//     database.query(
-//       QUERY.getBuildingByName,
-//       [building_name],
-//       (error, result) => {
-//         if (error) {
-//           reject({
-//             sucess: false,
-//             message: "Fetching from the building name error ",
-//             data: error,
-//           });
-//         }
-//         resolve({
-//           sucess: true,
-//           message: "Fetching from the building name success ",
-//           data: result[0],
-//         });
-//       }
-//     );
-//   });
 
 export const getCampusByName = (campus_name) =>
   new Promise((resolve, reject) => {

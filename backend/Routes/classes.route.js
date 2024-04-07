@@ -15,7 +15,9 @@ ClassRouter.get("/", async (req, res) => {
 
 ClassRouter.post("/", async (req,res)=>{
   try{
-    const {building_name , campus_name , capacity , room_number} = req.body
+    let {building_name , campus_name , capacity , room_number} = req.body
+    capacity = parseInt(capacity)
+    console.log(capacity)
     const data = await createAClass({building_name , campus_name , capacity , room_number})
     console.log(data)
     res.send(data)

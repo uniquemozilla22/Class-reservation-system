@@ -30,7 +30,7 @@ export const fetchALLBuilding = () => new Promise((resolve,reject)=>{
 export const getBuildingIDByName = (building_name) =>
   new Promise((resolve, reject) => {
     database.query(
-      QUERY.getBuildingIDByName,
+      QUERY.getBuildingByName,
       [building_name],
       (error, result) => {
         if (error) {
