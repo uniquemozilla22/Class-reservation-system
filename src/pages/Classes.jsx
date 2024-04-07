@@ -11,11 +11,16 @@ const Classes = () => {
     setBuildingNames(
       response.data.data.map((building) => building.building_name)
     );
+  };
+
+  const fetchCampusName = async () => {
+    const response = await baseHTTP.get("campus");
     setCampusNames(response.data.data.map((building) => building.campus_name));
   };
 
   useEffect(() => {
     fetchBuildingName();
+    fetchCampusName();
   }, []);
 
   return campusNames.length > 0 && buildingNames.length > 0 ? (

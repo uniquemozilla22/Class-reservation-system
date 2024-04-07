@@ -21,12 +21,10 @@ const TableComponent = (props) => {
   };
 
   const handleDelete = async (changing_key_data) => {
-    const response = await baseHTTP.delete(tableFor, {
+    const response = await baseHTTP.post(`${tableFor}/delete`, {
       [changing_key]: changing_key_data,
     });
-    toast[response.statusText === "OK" ? "success" : "error"](
-      response.data.message
-    );
+    toast[response.data.success ? "success" : "error"](response.data.message);
   };
 
   const handleCreate = async (e) => {
@@ -45,6 +43,8 @@ const TableComponent = (props) => {
     toast[response.statusText === "OK" ? "success" : "error"](
       response.data.message
     );
+
+    setData([...data, response.data.data[0]]);
   };
   useEffect(() => {
     fetchData();

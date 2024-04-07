@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { createAClass, deleteAClass, getAllClasses, updateAClass } from "../controller/class.controller.js";
-import { deleteRoomByRoomNumber, getRoomByName, updateRoomByRoomNumber } from "../database/Querys/classes.js";
 
 const ClassRouter = Router();
 
@@ -38,7 +37,7 @@ ClassRouter.put("/", async (req,res)=>{
   }
 })
 
-ClassRouter.delete("/", async (req,res)=>{
+ClassRouter.post("/delete", async (req,res)=>{
   try{
     const {room_number} = req.body
     let response = await deleteAClass(room_number )

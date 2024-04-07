@@ -35,6 +35,8 @@ export const updateAClass = async (room_number ,data) =>{
 }
 
 export const deleteAClass = async (room_number ) =>{
+    console.log("here 2")
+
     let response = await deleteRoomByRoomNumber(room_number )
     return response
 }

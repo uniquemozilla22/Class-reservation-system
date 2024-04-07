@@ -33,13 +33,13 @@ export const updateABuilding = async (building_name, data) =>{
     return response
 }
 
-
-export const deleteABuilding =async  (building_name)=>{
+export const deleteABuilding = async  (building_name)=>{
     try{
         let response = await deleteBuildingByName(building_name )
         return response
     }
     catch(error){
+        console.log("error",error)
         return error
     }
 }

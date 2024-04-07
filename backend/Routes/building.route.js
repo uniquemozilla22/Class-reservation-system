@@ -35,14 +35,16 @@ BuildingRouter.put("/", async (req,res)=>{
   }
 })
 
-BuildingRouter.delete("/", async (req,res)=>{
+BuildingRouter.post("/delete", async (req,res)=>{
   try{
-    const {building_name} = req.body
+    console.log()
+    const building_name = req.body.building_name
+    console.log(building_name)
     let response = await deleteABuilding(building_name)
     res.send(response)
   }
   catch(error) {
-    res.send(error)
+    res.send({error})
   }
 })
 
