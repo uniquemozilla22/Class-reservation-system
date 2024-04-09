@@ -9,6 +9,7 @@ import UserRouter from './Routes/user.route.js'
 import ClassRouter from './Routes/classes.route.js'
 import BuildingRouter from './Routes/building.route.js'
 import CampusRouter from './Routes/campus.route.js'
+import { authorizeUser } from './middleware/authuser.middleware.js'
 
 const app = express()
 
@@ -30,9 +31,9 @@ app.use("/user", HTTPLogger(UserRouter))
 
 
 
-app.use("/classes", HTTPLogger(ClassRouter))
-app.use("/building", HTTPLogger(BuildingRouter))
-app.use("/campus", HTTPLogger(CampusRouter))
+app.use("/classes",authorizeUser, HTTPLogger(ClassRouter))
+app.use("/building",authorizeUser,  HTTPLogger(BuildingRouter))
+app.use("/campus", authorizeUser, HTTPLogger(CampusRouter))
 
 
 const server  = app.listen(8080, ()=> logger.info("Application is running on http://localhost:8080"))

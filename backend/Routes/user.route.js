@@ -4,8 +4,6 @@ import { validateUser, registerNewUser } from "../controller/user.controller.js"
 const UserRouter = Router();
 
 UserRouter.post("/validateUser", async (req, res) => {
-    console.log("In validate USer API")
-    console.log(req)
     try{
     const {username, password} = req.body
     let response = await validateUser(username, password);

@@ -2,6 +2,8 @@ import Navigation from "./navigation.comp";
 import Sidebar from "./sidebar.comp";
 
 const Layout = ({ children }) => {
+
+  
   return (
     <div className="">
       <Sidebar />

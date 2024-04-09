@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import baseHTTP from "../utils/axiosBase";
 import { toast } from "react-toastify";
+import { getItem } from "../utils/localStorage";
 
 const TableComponent = (props) => {
   let { actions, changing_key, tableFor, create } = props;
+  const token = getItem("token");
   const [data, setData] = useState([]);
   const [createData, setCreateData] = useState({ ...create.feildsNeeded });
 
   const fetchData = async () => {
-    const response = await baseHTTP.get(tableFor);
+    const response = await baseHTTP(token).get(tableFor);
     console.log(response);
     setData(response.data.data);
   };
 
   const handleEditSubmit = async (data) => {
-    const response = await baseHTTP.put(tableFor, { ...data });
-    toast[response.statusText === "OK" ? "success" : "error"](
-      response.data.message
-    );
+    const response = await baseHTTP(token).put(tableFor, { ...data });
+    toast[response.data.success ? "success" : "error"](response.data.message);
   };
 
   const handleDelete = async (changing_key_data) => {
-    const response = await baseHTTP.post(`${tableFor}/delete`, {
+    const response = await baseHTTP(token).post(`${tableFor}/delete`, {
       [changing_key]: changing_key_data,
     });
     toast[response.data.success ? "success" : "error"](response.data.message);
@@ -39,11 +39,8 @@ const TableComponent = (props) => {
         };
       }
     });
-    const response = await baseHTTP.post(tableFor, { ...data });
-    toast[response.statusText === "OK" ? "success" : "error"](
-      response.data.message
-    );
-
+    const response = await baseHTTP(token).post(tableFor, { ...data });
+    toast[response.data.success ? "success" : "error"](response.data.message);
     setData([...data, response.data.data[0]]);
   };
   useEffect(() => {

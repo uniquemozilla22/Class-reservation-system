@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import TableComponent from "../components/Table.comp";
 import baseHTTP from "../utils/axiosBase";
+import { getItem } from "../utils/localStorage";
 
 const Building = () => {
   const [campusNames, setCampusNames] = useState([]);
+  const token = getItem("token");
 
   const fetchBuildingName = async () => {
-    const response = await baseHTTP.get("building");
+    const response = await baseHTTP(token).get("building");
     setCampusNames(response.data.data.map((building) => building.campus_name));
   };
 

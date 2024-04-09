@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { setItem } from "../utils/localStorage";
 
 const Sidebar = ({ children }) => {
+  const navigate = useNavigate();
+  const logout = () => {
+    setItem("token", "");
+    navigate(".");
+  };
   const data = {
     contents: [
       { path: "/classes", name: "Classes" },
@@ -29,6 +35,12 @@ const Sidebar = ({ children }) => {
               </Link>
             </li>
           ))}
+          <button
+            className="btn absolute bottom-0 w-full left-0 rounded-none "
+            onClick={logout}
+          >
+            Logout
+          </button>
         </ul>
       </div>
     </>

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseHTTP from "../utils/axiosBase";
+import { getItem, setItem } from "../utils/localStorage";
+import { toast } from "react-toastify";
 
 const styles = {
   back: {
@@ -14,17 +16,24 @@ const styles = {
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const token = getItem("token");
 
-  function handleSubmit(event) {
+  useEffect(() => {
+    if (!getItem("token")) setItem("token", "");
+  }, []);
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    axios
-      .post("http://localhost:8080/user/validateUser", { username, password })
-      .then((res) => console.log(res))
+    await baseHTTP(token)
+      .post("user/validateUser", { username, password })
+      .then((res) => {
+        setItem("token", res.data.token);
+        toast(res.data.message);
+        navigate("/");
+      })
       .catch((error) => {
-        console.error(error);
+        toast.error(error.message);
       });
-
-    navigate("/index");
   }
   const navigate = useNavigate();
 

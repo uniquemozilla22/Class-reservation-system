@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import baseHTTP from "../utils/axiosBase";
 import TableComponent from "../components/Table.comp";
+import { getItem } from "../utils/localStorage";
 
 const Classes = () => {
   const [buildingNames, setBuildingNames] = useState([]);
   const [campusNames, setCampusNames] = useState([]);
+  const token = getItem("token");
 
   const fetchBuildingName = async () => {
-    const response = await baseHTTP.get("building");
+    const response = await baseHTTP(token).get("building");
     setBuildingNames(
       response.data.data.map((building) => building.building_name)
     );
   };
 
   const fetchCampusName = async () => {
-    const response = await baseHTTP.get("campus");
+    const response = await baseHTTP(token).get("campus");
     setCampusNames(response.data.data.map((building) => building.campus_name));
   };
 

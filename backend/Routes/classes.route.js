@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createAClass, deleteAClass, getAllClasses, updateAClass } from "../controller/class.controller.js";
+import { authorizeAdmin } from "../middleware/authuser.middleware.js";
 
 const ClassRouter = Router();
 
@@ -12,7 +13,7 @@ ClassRouter.get("/", async (req, res) => {
   }
 });
 
-ClassRouter.post("/", async (req,res)=>{
+ClassRouter.post("/", authorizeAdmin, async (req,res)=>{
   try{
     let {building_name , campus_name , capacity , room_number} = req.body
     capacity = parseInt(capacity)
@@ -26,7 +27,7 @@ ClassRouter.post("/", async (req,res)=>{
   }
 })
 
-ClassRouter.put("/", async (req,res)=>{
+ClassRouter.put("/", authorizeAdmin, async (req,res)=>{
   try{
     const {room_number ,data} = req.body
     const response = await updateAClass(room_number ,data)
@@ -37,7 +38,7 @@ ClassRouter.put("/", async (req,res)=>{
   }
 })
 
-ClassRouter.post("/delete", async (req,res)=>{
+ClassRouter.post("/delete", authorizeAdmin, async (req,res)=>{
   try{
     const {room_number} = req.body
     let response = await deleteAClass(room_number )

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseHTTP from "../utils/axiosBase";
+import { getItem } from "../utils/localStorage";
 
 const styles = {
   back: {
@@ -18,6 +19,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [user_type, setUserType] = useState("");
+  const token = getItem("token");
 
   const us = user_type;
   const headers = {
@@ -25,7 +27,7 @@ const SignUp = () => {
   };
   async function signUp(event) {
     event.preventDefault();
-    const response = await baseHTTP.post(
+    const response = await baseHTTP(token).post(
       "user/registerNewUser",
       { user_id, username, password, email, user_type },
       {

@@ -2,12 +2,13 @@
 
 
 import axios from 'axios'
+import { getItem } from './localStorage';
 
-const baseHTTP = axios.create({
+const baseHTTP= (token) =>axios.create({
     baseURL:"http://localhost:8080/",
     headers:{
-        Authorization:""
-    }
+        Authorization:token
+    } 
 })
 
 
