@@ -1,4 +1,4 @@
-import QUERY from "../database/Querys/index.js";
+import QUERY from "../database/Querys/classes.js";
 import database from "../database/connect.js"
 
 export const getAllClasses = () => new Promise((resolve, reject)=>{

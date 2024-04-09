@@ -22,4 +22,4 @@ connection.connect((error)=>{
 })
 
 
-
+export default connection;

@@ -1,9 +1,11 @@
 import  express from 'express'
-import mysql from 'mysql'
 import cors from 'cors'
 import 'dotenv/config' 
-import logger from './utils/logger.js'
-import { useNavigate } from "react-router-dom";
+import logger, { HTTPLogger } from './utils/logger.js'
+// import ClassRouter from './Routes/classes.route.js'
+// import BuildingRouter from './Routes/building.route.js'
+// import CampusRouter from './Routes/campus.route.js'
+import UserRouter from './Routes/user.route.js'
 
 const app = express()
 
@@ -17,27 +19,12 @@ app.get("/",(req,res)=>{
     res.send({message:"Application API is running "})
 })
 
-const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "root12345",
-  database: "university_reservation"
-})
 
-app.post("/validatePassword", (req, res) => {
-  console.log(req.body.username);
-  console.log(req.body.password);
-  
-  // const sql = "SELECT * from Users";
-  const sql = "SELECT * from Users where username = ? and password = ?";
-  
-  db.query(sql, [req.body.username, req.body.password], (err, data) => {
-    console.log(data);
-    if(err) return res.json("Login Failed");
-    return res.json(data);
+// app.use("/classes", HTTPLogger(ClassRouter))
+// app.use("/building", HTTPLogger(BuildingRouter))
+// app.use("/campus", HTTPLogger(CampusRouter))
+app.use("/user", HTTPLogger(UserRouter))
 
-  })
-})
 
 const server  = app.listen(8080, ()=> logger.info("Application is running on http://localhost:8080"))
 

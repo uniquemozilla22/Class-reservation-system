@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import baseHTTP from "../utils/axiosBase";
 
 const styles = {
     back: {
@@ -15,9 +16,13 @@ const SignIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
+    const responseFunction = async () => {
+        const response = await baseHTTP.get("")
+    }
+
     function handleSubmit(event){
         event.preventDefault();
-        axios.post('http://localhost:8080/validatePassword', {username, password}).
+        axios.post('http://localhost:8080/validateUser', {username, password}).
         then(res => console.log(res));
         
         navigate("/index");
@@ -27,10 +32,6 @@ const SignIn = () => {
 
     const goToBackPage = () => {
         navigate("/entry");
-    }
-
-    const goToIndexxPage = () => {
-        navigate("/welcome");
     }
 
     return (
@@ -58,7 +59,7 @@ const SignIn = () => {
             </form>
            </div>
            <br></br>
-            <button style = {styles.back}onClick={() => goToBack()}>BACK</button>
+            <button style = {styles.back}onClick={() => goToBackPage()}>BACK</button>
                         
         </div>
     );
