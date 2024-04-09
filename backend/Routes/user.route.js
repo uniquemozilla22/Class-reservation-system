@@ -20,8 +20,8 @@ UserRouter.post("/registerNewUser", async (req, res) => {
   
 
 try{
-    const {user_id, username, password, email, user_type} = req.body
-    let response = await registerNewUser({user_id, username, password, email, user_type});
+    const {username, password, email, user_type} = req.body
+    let response = await registerNewUser({username, password, email});
     res.send(response);
 }catch(error){
    res.send(error);   

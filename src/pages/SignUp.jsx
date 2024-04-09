@@ -15,22 +15,13 @@ const styles = {
 
 const SignUp = () => {
 
-    const [user_id, setUserId] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
-    const [user_type, setUserType] = useState('')
-
-    const us = user_type;
-    const headers = {
-        'userType' : us
-    }
 
     function signUp(event){
         event.preventDefault();
-        axios.post('http://localhost:8080/user/registerNewUser', {user_id, username, password, email, user_type}, {
-            headers: headers
-        }).
+        axios.post('http://localhost:8080/user/registerNewUser', {username, password, email}).
         then(res => console.log(res));
         
         navigate("/index");
@@ -51,12 +42,6 @@ const SignUp = () => {
 
             <div>
                 <form onSubmit={signUp}>
-                <div>
-                    <label>user_id </label>
-                    <input type = "text" 
-                    onChange = {e => setUserId(e.target.value)}></input >
-                </div>
-                <br></br>
 
                 <div>
                     <label>Username </label>
@@ -78,14 +63,6 @@ const SignUp = () => {
                     <label>email </label>
                     <input type = "text" 
                     onChange = {e => setEmail(e.target.value)}></input >
-                </div>
-
-                <br></br>
-
-                <div>
-                    <label>user_type </label>
-                    <input type = "text" 
-                    onChange = {e => setUserType(e.target.value)}></input >
                 </div>
 
                 <br></br>
