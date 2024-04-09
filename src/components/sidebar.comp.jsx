@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 
 const Sidebar = ({ children }) => {
   const data = {
-    contents: [{ path: "/classes", name: "classes" }],
+    contents: [
+      { path: "/classes", name: "Classes" },
+      { path: "/building", name: "Building" },
+    ],
   };
   return (
     <>

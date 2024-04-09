@@ -1,34 +1,22 @@
 import { useEffect, useState } from "react";
-import { useEffect, useState } from "react";
-import baseHTTP from "../utils/axiosBase";
 import TableComponent from "../components/Table.comp";
 import baseHTTP from "../utils/axiosBase";
 
-const Classes = () => {
-  const [buildingNames, setBuildingNames] = useState([]);
+const Building = () => {
   const [campusNames, setCampusNames] = useState([]);
 
   const fetchBuildingName = async () => {
     const response = await baseHTTP.get("building");
-    setBuildingNames(
-      response.data.data.map((building) => building.building_name)
-    );
-  };
-
-  const fetchCampusName = async () => {
-    const response = await baseHTTP.get("campus");
     setCampusNames(response.data.data.map((building) => building.campus_name));
   };
 
   useEffect(() => {
     fetchBuildingName();
-    fetchCampusName();
   }, []);
-
-  return campusNames.length > 0 && buildingNames.length > 0 ? (
+  return campusNames.length > 0 ? (
     <TableComponent
-      tableFor="classes"
-      changing_key="room_number"
+      tableFor="building"
+      changing_key="building_name"
       actions={
         <>
           <button className="btn btn-md btn-link">Book Now</button>
@@ -36,16 +24,14 @@ const Classes = () => {
       }
       create={{
         feildsNeeded: {
-          building_name: buildingNames,
+          building_name: "",
           campus_name: campusNames,
-          capacity: "",
-          room_number: "",
         },
       }}
     />
   ) : (
-    "Loading..."
+    "Loading,,,"
   );
 };
 
-export default Classes;
+export default Building;
