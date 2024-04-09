@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { useEffect, useState } from "react";
 import baseHTTP from "../utils/axiosBase";
 import TableComponent from "../components/Table.comp";
-import baseHTTP from "../utils/axiosBase";
 
 const Classes = () => {
   const [buildingNames, setBuildingNames] = useState([]);

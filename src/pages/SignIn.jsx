@@ -16,14 +16,14 @@ const SignIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const responseFunction = async () => {
-        const response = await baseHTTP.get("")
-    }
 
     function handleSubmit(event){
         event.preventDefault();
-        axios.post('http://localhost:8080/validateUser', {username, password}).
-        then(res => console.log(res));
+        axios.post('http://localhost:8080/user/validateUser', {username, password}).
+        then(res => console.log(res))
+        .catch((error) => {
+            console.error(error)
+        });
         
         navigate("/index");
 

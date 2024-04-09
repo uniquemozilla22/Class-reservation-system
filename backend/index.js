@@ -1,7 +1,7 @@
 import  express from 'express'
 import cors from 'cors'
 import 'dotenv/config' 
-import logger, { HTTPLogger }, { HTTPLogger } from './utils/logger.js'
+import logger, { HTTPLogger } from './utils/logger.js'
 // import ClassRouter from './Routes/classes.route.js'
 // import BuildingRouter from './Routes/building.route.js'
 // import CampusRouter from './Routes/campus.route.js'

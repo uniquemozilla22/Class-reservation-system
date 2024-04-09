@@ -11,4 +11,4 @@ const baseHTTP = axios.create({
 })
 
 
-export default baseHTTP
+export default baseHTTP;

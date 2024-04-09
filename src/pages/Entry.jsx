@@ -24,12 +24,16 @@ const Entry = () => {
     const goToNewPage = () => {
         navigate("/signIn");
     }
+
+    const goToSignUp = () => {
+        navigate("/signUp");
+    }
     return (
         <div>
             <button class = "signIn" style={styles.signIn} onClick={() => goToNewPage()}>SIGN IN</button>
             <br/>
             <br/>
-            <button class = "signUp" style={styles.signUp}>SIGN UP</button>
+            <button class = "signUp" style={styles.signUp} onClick = {() => goToSignUp()}>SIGN UP</button>
         </div>
     );
 };
