@@ -25,12 +25,13 @@ const TableComponent = (props) => {
       [changing_key]: changing_key_data,
     });
     toast[response.data.success ? "success" : "error"](response.data.message);
+    fetchData();
   };
 
   const handleCreate = async (e) => {
     e.preventDefault();
     let data = createData;
-    Object.keys(data).forEach((value, index) => {
+    Object.keys(data).forEach((value) => {
       if (typeof data[value] === "object" && data[value].length > 0) {
         console.log("updaing", data[value][0]);
         data = {
@@ -42,6 +43,7 @@ const TableComponent = (props) => {
     const response = await baseHTTP(token).post(tableFor, { ...data });
     toast[response.data.success ? "success" : "error"](response.data.message);
     setData([...data, response.data.data[0]]);
+    fetchData();
   };
   useEffect(() => {
     fetchData();
@@ -97,29 +99,15 @@ const TableComponent = (props) => {
             </h1>
             {create &&
               // eslint-disable-next-line react/prop-types
-              Object.keys(create.feildsNeeded).map((keys, index) => (
-                <div key={index} className={"capitalize m-2"}>
-                  {create.feildsNeeded[keys].length !== 0 ? (
-                    <select
-                      className="select select-bordered w-full max-w-xs"
-                      onChange={(e) =>
-                        setCreateData({
-                          ...createData,
-                          [keys]: e.target.value,
-                        })
-                      }
+              Object.keys(create.feildsNeeded).map((keys, index) => {
+                if (keys.includes("date")) {
+                  return (
+                    <label
+                      key={index}
+                      className="input input-bordered flex items-center gap-2"
                     >
-                      {create.feildsNeeded[keys].map((options, index) => (
-                        <option key={index} value={options}>
-                          {" "}
-                          {options}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <label className="input input-bordered flex items-center gap-2">
                       <input
-                        type="text"
+                        type="date"
                         className="grow capitalize"
                         placeholder={keys.split("_").join(" ")}
                         onChange={(e) =>
@@ -128,11 +116,70 @@ const TableComponent = (props) => {
                             [keys]: e.target.value,
                           })
                         }
+                        required
                       />
                     </label>
-                  )}
-                </div>
-              ))}
+                  );
+                }
+
+                if (keys.includes("time")) {
+                  return (
+                    <label
+                      key={index}
+                      className="input input-bordered flex items-center gap-2"
+                    >
+                      <input
+                        type="time"
+                        className="grow capitalize"
+                        placeholder={new Date().getTime()}
+                        onChange={(e) =>
+                          setCreateData({
+                            ...createData,
+                            [keys]: e.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </label>
+                  );
+                }
+                return (
+                  <div key={index} className={"capitalize m-2"}>
+                    {create.feildsNeeded[keys].length !== 0 ? (
+                      <select
+                        className="select select-bordered w-full max-w-xs"
+                        onChange={(e) =>
+                          setCreateData({
+                            ...createData,
+                            [keys]: e.target.value,
+                          })
+                        }
+                      >
+                        {create.feildsNeeded[keys].map((options, index) => (
+                          <option key={index} value={options}>
+                            {" "}
+                            {options}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <label className="input input-bordered flex items-center gap-2">
+                        <input
+                          type="text"
+                          className="grow capitalize"
+                          placeholder={keys.split("_").join(" ")}
+                          onChange={(e) =>
+                            setCreateData({
+                              ...createData,
+                              [keys]: e.target.value,
+                            })
+                          }
+                        />
+                      </label>
+                    )}
+                  </div>
+                );
+              })}
 
             <input
               type="submit"

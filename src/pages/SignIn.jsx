@@ -42,36 +42,56 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      "WELCOME TO SIGN IN PAGE!"
-      <br></br>
-      <br></br>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Username </label>
-            <input
-              type="text"
-              onChange={(e) => setUsername(e.target.value)}
-            ></input>
-          </div>
-          <br></br>
-          <div>
-            <label>Password </label>
-            <input
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
-          </div>
-          <br></br>
-          <button style={styles.back}>LOG IN</button>
-          <br></br>
-        </form>
+    <div className="antialiased absolute w-full h-screen grid ">
+      <div className="flex justify-center align-center place-items-center w-full  ">
+        <div className=" justify-center align-center p-10 ">
+          <span className="block w-full text-xl uppercase font-bold mb-4">
+            Login
+          </span>
+          <form
+            className="mb-4 flex flex-col gap-5 justify-center align-middle"
+            onSubmit={handleSubmit}
+          >
+            <div className="mb-4 md:w-full">
+              <label htmlFor="email" className="block text-xs mb-1">
+                Username or Email
+              </label>
+              <input
+                className=" input input-bordered"
+                id="email"
+                placeholder="Username or Email"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="mb-6 md:w-full">
+              <label
+                htmlFor="password"
+                className="block text-xs mb-1"
+                onChange={(e) => setPassword(e.target.value)}
+              >
+                Password
+              </label>
+              <input
+                className=" input input-bordered"
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+              />
+            </div>
+            <button className=" btn btn-outline btn-primary uppercase text-sm font-semibold px-4 py-2 rounded">
+              Login
+            </button>
+          </form>
+          <button
+            className=" text-center text-sm"
+            href="/login"
+            onClick={() => goToBackPage()}
+          >
+            Go Back
+          </button>
+        </div>
       </div>
-      <br></br>
-      <button style={styles.back} onClick={() => goToBackPage()}>
-        BACK
-      </button>
     </div>
   );
 };

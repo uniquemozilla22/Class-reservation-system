@@ -1,16 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
-import { setItem } from "../utils/localStorage";
+import { getItem, setItem } from "../utils/localStorage";
+import { useState } from "react";
 
-const Sidebar = ({ children }) => {
+const Sidebar = () => {
   const navigate = useNavigate();
+  const token = getItem("token");
+  const [isLoggedin, setIsLoggedIn] = useState(
+    token && token !== "" ? true : false
+  );
+
+  console.log(isLoggedin);
+
   const logout = () => {
     setItem("token", "");
     navigate(".");
+    window.location.reload();
   };
+
   const data = {
     contents: [
       { path: "/classes", name: "Classes" },
       { path: "/building", name: "Building" },
+      { path: "/booking", name: "Bookings" },
     ],
   };
   return (

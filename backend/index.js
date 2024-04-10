@@ -2,14 +2,13 @@ import  express from 'express'
 import cors from 'cors'
 import 'dotenv/config' 
 import logger, { HTTPLogger } from './utils/logger.js'
-// import ClassRouter from './Routes/classes.route.js'
-// import BuildingRouter from './Routes/building.route.js'
-// import CampusRouter from './Routes/campus.route.js'
 import UserRouter from './Routes/user.route.js'
 import ClassRouter from './Routes/classes.route.js'
 import BuildingRouter from './Routes/building.route.js'
 import CampusRouter from './Routes/campus.route.js'
 import { authorizeUser } from './middleware/authuser.middleware.js'
+import BookingRouter from './Routes/booking.route.js'
+import EventRouter from './Routes/event.route.js'
 
 const app = express()
 
@@ -24,13 +23,12 @@ app.get("/",(req,res)=>{
 })
 
 
-// app.use("/classes", HTTPLogger(ClassRouter))
-// app.use("/building", HTTPLogger(BuildingRouter))
-// app.use("/campus", HTTPLogger(CampusRouter))
 app.use("/user", HTTPLogger(UserRouter))
 
 
 
+app.use("/booking",authorizeUser, HTTPLogger(BookingRouter))
+app.use("/event", HTTPLogger(EventRouter))
 app.use("/classes",authorizeUser, HTTPLogger(ClassRouter))
 app.use("/building",authorizeUser,  HTTPLogger(BuildingRouter))
 app.use("/campus", authorizeUser, HTTPLogger(CampusRouter))

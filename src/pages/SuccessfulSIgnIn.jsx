@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const styles = {
   back: {
@@ -10,9 +11,10 @@ const styles = {
 
 const ExtraComp = () => {
   const navigate = useNavigate();
-  const goToEntryPage = () => {
+
+  useEffect(() => {
     navigate("/");
-  };
+  });
 
   return (
     <div>

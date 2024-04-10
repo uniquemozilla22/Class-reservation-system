@@ -3,7 +3,7 @@ import database from "../connect.js"
 
 const QUERY = {
     getUserInfo: "SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?",
-    register: "INSERT INTO USERS VALUES(?, ?, ?, ?, ?)",
+    register: "INSERT INTO USERS (username, password, email, user_type) VALUES( ?, ?, ?, 'regular')",
     getUserIDByUserName:"SELECT user_id FROM USERS WHERE username =? ",
     getUserByUserID:"SELECT * FROM USERS WHERE user_id =? "
 };

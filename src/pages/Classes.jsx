@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import baseHTTP from "../utils/axiosBase";
 import TableComponent from "../components/Table.comp";
 import { getItem } from "../utils/localStorage";
+import { useNavigate } from "react-router-dom";
 
 const Classes = () => {
   const [buildingNames, setBuildingNames] = useState([]);
   const [campusNames, setCampusNames] = useState([]);
+  const navigate = useNavigate();
   const token = getItem("token");
 
   const fetchBuildingName = async () => {
@@ -31,7 +33,12 @@ const Classes = () => {
       changing_key="room_number"
       actions={
         <>
-          <button className="btn btn-md btn-link">Book Now</button>
+          <button
+            className="btn btn-md btn-link"
+            onClick={() => navigate("/bookings")}
+          >
+            Book Now
+          </button>
         </>
       }
       create={{

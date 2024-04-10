@@ -10,6 +10,8 @@ import ClassNameSingle from "./pages/ClassSingle";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Building from "./pages/building";
+import Booking from "./pages/Booking";
+
 function App() {
   return (
     <Layout>
@@ -20,8 +22,8 @@ function App() {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/index" element={<SuccessfulSignIn />} />
         <Route path="/signUp" element={<SignUp />} />
-        {/* <Route path="/classes/:id" element={<ClassNameSingle />} /> */}
         <Route path="/building" element={<Building />} />
+        <Route path="/booking" element={<Booking />} />
         <Route path="/classes/:id" element={<ClassNameSingle />} />
       </Routes>
     </Layout>
