@@ -21,19 +21,19 @@ import("./database/connect.js")
 
 app.get("/",async (req,res)=>{
   let data = {}
-  database.query("Select * from user", (error, result) => {
+  database.query("Select * from Users", (error, result) => {
       if(error)
       {
         data  = {
           sucess: false,
-          message: "Fetching from the users error ",
-          data: error,
+          message: "Fetching from the Users error ",
+          data: result,
         };
       }
       else{
         data  = {
           sucess: true,
-          message: "Fetching from the users success ",
+          message: "Fetching from the Users success ",
           data: result,
         };
       }

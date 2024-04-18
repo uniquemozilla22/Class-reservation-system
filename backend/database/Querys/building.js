@@ -2,11 +2,11 @@ import database from "../connect.js";
 
 
 const QUERY = {
-    fetchALLBuilding:"SELECT *  FROM building JOIN campus ON building.campus_id = campus.campus_id",
-    getBuildingByName: "SELECT * FROM building JOIN campus ON building.campus_id = campus.campus_id WHERE building_name = ?",
-    insertIntoBuldingByCampusID :"INSERT INTO building(building_name, campus_id) VALUES(?,?)",
-    updateBuldingByName: (updateName) =>`UPDATE building SET ${updateName} = ? WHERE building_name = ?`,
-    deleteBuildingByName: `DELETE FROM building WHERE building_name =?`
+    fetchALLBuilding:"SELECT *  FROM Building JOIN Campus ON Building.campus_id = Campus.campus_id",
+    getBuildingByName: "SELECT * FROM Building JOIN Campus ON Building.campus_id = Campus.campus_id WHERE building_name = ?",
+    insertIntoBuldingByCampusID :"INSERT INTO Building(building_name, campus_id) VALUES(?,?)",
+    updateBuldingByName: (updateName) =>`UPDATE Building SET ${updateName} = ? WHERE building_name = ?`,
+    deleteBuildingByName: `DELETE FROM Building WHERE building_name =?`
 }
 
 

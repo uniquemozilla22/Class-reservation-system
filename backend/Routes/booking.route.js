@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { fetchAllBookings, updateBooking } from "../database/Querys/booking.js";
+import { deleteBookingByName, fetchAllBookings, updateBooking } from "../database/Querys/booking.js";
 import { createBooking } from "../controller/booking.controller.js";
 import { authorizeAdmin } from "../middleware/authuser.middleware.js";
 import { getRoomByName } from "../database/Querys/classes.js";
@@ -50,18 +50,18 @@ BookingRouter.put("/", authorizeAdmin, async (req,res)=>{
   }
 })
 
-// BookingRouter.post("/delete", authorizeAdmin, async (req,res)=>{
-//   try{
-//     console.log()
-//     const building_name = req.body.building_name
-//     console.log(building_name)
-//     let response = await deleteABuilding(building_name)
-//     res.send(response)
-//   }
-//   catch(error) {
-//     res.send({error})
-//   }
-// })
+BookingRouter.post("/delete", authorizeAdmin, async (req,res)=>{
+  try{
+    console.log()
+    const building_name = req.body.booking_id
+    console.log(building_name)
+    let response = await deleteBookingByName(building_name)
+    res.send(response)
+  }
+  catch(error) {
+    res.send({error})
+  }
+})
 
 
 export default BookingRouter;

@@ -1,11 +1,11 @@
 import database from "../connect.js";
 
 const QUERY = {
-    fetchAllBookings:"SELECT  u.username AS user_name, b.date,b.start_time,b.end_time, b.description AS event_description,u.email AS user_email,u.user_type AS user_type,r.room_number, r.capacity, r.availability, e.event_id, e.attendees, e.description AS event_description FROM Booking b JOIN Users u ON b.user_id = u.user_id JOIN Room r ON b.room_id = r.room_id JOIN Event e ON b.event_id = e.event_id;",
-    getBuildingByName: "SELECT * FROM building JOIN campus ON building.campus_id = campus.campus_id WHERE building_name = ?",
+    fetchAllBookings:"SELECT b.booking_id, u.username AS user_name, b.date,b.start_time,b.end_time, b.description AS event_description,u.email AS user_email,u.user_type AS user_type,r.room_number, r.capacity, r.availability, e.event_id, e.attendees, e.description AS event_description FROM Booking b JOIN Users u ON b.user_id = u.user_id JOIN Room r ON b.room_id = r.room_id JOIN Event e ON b.event_id = e.event_id;",
+    getBuildingByName: "SELECT * FROM Building JOIN Campus ON Building.campus_id = Campus.campus_id WHERE building_name = ?",
     insertBooking :"INSERT INTO Booking (user_id, room_id, date, start_time, end_time, event_id, description) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    updateBuldingByName: (updateName) =>`UPDATE booking SET ${updateName} = ? WHERE room_id = ?`,
-    deleteBuildingByName: `DELETE FROM building WHERE building_name =?`
+    updateBuldingByName: (updateName) =>`UPDATE Booking SET ${updateName} = ? WHERE room_id = ?`,
+    deleteBookingByName: `DELETE FROM Booking WHERE booking_id =?`
 }
 
 export const fetchAllBookings = () => new Promise((resolve,reject)=>{
@@ -24,6 +24,8 @@ export const fetchAllBookings = () => new Promise((resolve,reject)=>{
         });
       });
 })
+
+
 
 
 
@@ -69,6 +71,25 @@ export const updateBooking = (booking_number, data) =>
         data:response})
   });
 
+  
+
+  export const deleteBookingByName = (id) => new Promise((resolve, reject) => {
+    database.query(QUERY.deleteBookingByName, [id], (error, result) => {
+        if (error) {
+            reject({
+                success: false,
+                message: "Deleting from the Booking error",
+                data: error,
+            });
+        } else {
+            resolve({
+                success: true,
+                message: "Deleting from the Booking success",
+                data: result,
+            });
+        }
+    });
+});
 
 
 

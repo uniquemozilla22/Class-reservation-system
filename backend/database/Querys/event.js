@@ -1,8 +1,8 @@
 import database from "../connect.js";
 
 const QUERY = {
-    fetchAllEvents:"SELECT * FROM event",
-    getEventByDescription:"SELECT * from event wHERE description=?"
+    fetchAllEvents:"SELECT * FROM Event",
+    getEventByDescription:"SELECT * from Event WHERE description=?"
 }
 
 export const fetchAllEvents = () => new Promise((resolve,reject)=>{

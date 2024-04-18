@@ -2,14 +2,14 @@ import database from "../connect.js";
 
 const QUERY = {
   getRoom:
-    "SELECT *  FROM room JOIN building ON room.building_id = building.building_id JOIN campus ON building.campus_id = campus.campus_id",
+    "SELECT *  FROM Room JOIN Building ON Room.building_id = Building.building_id JOIN Campus ON Building.campus_id = Campus.campus_id",
   insertRoomData:
-    "INSERT INTO room(room_number, capacity, availability, building_id) VALUES(?,?,?,?)",
+    "INSERT INTO Room(room_number, capacity, availability, building_id) VALUES(?,?,?,?)",
   getRoomByName:
-    "SELECT * FROM room  JOIN building ON room.building_id = building.building_id JOIN campus ON building.campus_id = campus.campus_id WHERE room_number = ?",
+    "SELECT * FROM Room  JOIN Building ON Room.building_id = Building.building_id JOIN Campus ON Building.campus_id = Campus.campus_id WHERE room_number = ?",
   updateRoomByID: (updateName) =>
-    `UPDATE room SET ${updateName} = ? WHERE room_number = ?`,
-    deleteRoomByRoomName:`DELETE FROM room WHERE room_number =?`
+    `UPDATE Room SET ${updateName} = ? WHERE room_number = ?`,
+    deleteRoomByRoomName:`DELETE FROM Room WHERE room_number =?`
 };
 export const fetchAllClasses = () =>
   new Promise((resolve, reject) => {

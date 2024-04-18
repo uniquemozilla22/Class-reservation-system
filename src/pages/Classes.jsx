@@ -28,7 +28,7 @@ const Classes = () => {
         <>
           <button
             className="btn btn-md btn-link"
-            onClick={() => navigate("/bookings")}
+            onClick={() => navigate("/booking")}
           >
             Book Now
           </button>

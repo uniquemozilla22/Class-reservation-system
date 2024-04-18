@@ -11,7 +11,7 @@ export const createABuilding = async (building_name, campus_name) =>{
     try{
         const building = await getBuildingByName(building_name)
         if(building.data && building.data.length !== 0){
-            const roomData = {success:false , message:`There is already that building name registered on ${room.data.campus_name}`, data:room.data}
+            const roomData = {success:false , message:`There is already that building name registered on ${building.data.campus_name}`, data:building.data}
             console.log(roomData)
             return roomData
         }

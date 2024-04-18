@@ -26,7 +26,7 @@ const Booking = () => {
   return roomNumber.length > 0 && events.length > 0 ? (
     <TableComponent
       tableFor="booking"
-      changing_key="room_number"
+      changing_key="booking_id"
       actions={<></>}
       create={{
         feildsNeeded: {

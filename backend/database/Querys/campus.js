@@ -2,8 +2,8 @@ import database from "../connect.js";
 
 
 const QUERY = {
-    getCampusIDByName: "SELECT campus_id FROM campus WHERE campus_name = ?",
-    getCampusAll: "SELECT * FROM campus;",
+    getCampusIDByName: "SELECT campus_id FROM Campus WHERE campus_name = ?",
+    getCampusAll: "SELECT * FROM Campus;",
 }
 
 export const fetchALLCampus = () => new Promise((resolve,reject)=>{

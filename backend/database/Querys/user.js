@@ -2,10 +2,10 @@ import database from "../connect.js"
 
 
 const QUERY = {
-    getUserInfo: "SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?",
-    register: "INSERT INTO USERS (username, password, email, user_type) VALUES( ?, ?, ?, 'regular')",
-    getUserIDByUserName:"SELECT user_id FROM USERS WHERE username =? ",
-    getUserByUserID:"SELECT * FROM USERS WHERE user_id =? "
+    getUserInfo: "SELECT * FROM Users WHERE USERNAME = ? AND PASSWORD = ?",
+    register: "INSERT INTO Users (username, password, email, user_type) VALUES( ?, ?, ?, 'regular')",
+    getUserIDByUserName:"SELECT user_id FROM Users WHERE username =? ",
+    getUserByUserID:"SELECT * FROM Users WHERE user_id =? "
 };
 
 
