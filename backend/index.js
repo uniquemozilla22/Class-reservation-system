@@ -9,6 +9,7 @@ import CampusRouter from './Routes/campus.route.js'
 import { authorizeUser } from './middleware/authuser.middleware.js'
 import BookingRouter from './Routes/booking.route.js'
 import EventRouter from './Routes/event.route.js'
+import database from './database/connect.js'
 
 const app = express()
 
@@ -18,8 +19,30 @@ app.set('trust proxy', true);
 
 import("./database/connect.js")
 
-app.get("/",(req,res)=>{
-    res.send({message:"Application API is running "})
+app.get("/",async (req,res)=>{
+  let data = {}
+  database.query("Select * from user", (error, result) => {
+      if(error)
+      {
+        data  = {
+          sucess: false,
+          message: "Fetching from the users error ",
+          data: error,
+        };
+      }
+      else{
+        data  = {
+          sucess: true,
+          message: "Fetching from the users success ",
+          data: result,
+        };
+      }
+      
+    
+    
+      res.send({message:"Application API is running ", data})
+
+    });
 })
 
 
