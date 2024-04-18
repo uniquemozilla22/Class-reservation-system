@@ -1,11 +1,7 @@
-
-
-
 import axios from 'axios'
-import { getItem } from './localStorage';
 
 const baseHTTP= (token) =>axios.create({
-    baseURL:"http://localhost:8080/",
+    baseURL:import.meta.env.VITE_BACKEND_LINK,
     headers:{
         Authorization:token
     } 
