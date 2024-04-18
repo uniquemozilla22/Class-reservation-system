@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseHTTP from "../utils/axiosBase";
-import { getItem } from "../utils/localStorage";
+import { getItem, setItem } from "../utils/localStorage";
+import { toast } from "react-toastify";
 
 const styles = {
   back: {
@@ -14,7 +15,6 @@ const styles = {
 };
 
 const SignUp = () => {
-  const [user_id, setUserId] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -29,13 +29,17 @@ const SignUp = () => {
     event.preventDefault();
     const response = await baseHTTP(token).post(
       "user/registerNewUser",
-      { user_id, username, password, email, user_type },
+      { username, password, email },
       {
         headers: headers,
       }
     );
-    if (response.status === "OK") {
-      navigate("/index");
+    if (response.data.sucess) {
+      toast.success(response.data.message);
+      setItem("token", response.data.token);
+      navigate("/booking");
+    } else {
+      toast.error(response.data.message);
     }
   }
   const navigate = useNavigate();
@@ -51,15 +55,6 @@ const SignUp = () => {
       <br></br>
       <div>
         <form onSubmit={signUp}>
-          <div>
-            <label>user_id </label>
-            <input
-              type="text"
-              onChange={(e) => setUserId(e.target.value)}
-            ></input>
-          </div>
-          <br></br>
-
           <div>
             <label>Username </label>
             <input
@@ -87,21 +82,10 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)}
             ></input>
           </div>
-
           <br></br>
-
-          <div>
-            <label>user_type </label>
-            <input
-              type="text"
-              onChange={(e) => setUserType(e.target.value)}
-            ></input>
-          </div>
-
-          <br></br>
-
-          <br></br>
-          <button style={styles.back}>SIGN UP</button>
+          <button style={styles.back} type="submit">
+            SIGN UP
+          </button>
           <br></br>
         </form>
       </div>
