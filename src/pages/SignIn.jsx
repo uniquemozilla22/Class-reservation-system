@@ -24,6 +24,7 @@ const SignIn = () => {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    console.log(username, password);
     await baseHTTP(token)
       .post("user/validateUser", { username, password })
       .then((res) => {
@@ -64,11 +65,7 @@ const SignIn = () => {
               />
             </div>
             <div className="mb-6 md:w-full">
-              <label
-                htmlFor="password"
-                className="block text-xs mb-1"
-                onChange={(e) => setPassword(e.target.value)}
-              >
+              <label htmlFor="password" className="block text-xs mb-1">
                 Password
               </label>
               <input
@@ -77,6 +74,7 @@ const SignIn = () => {
                 name="password"
                 id="password"
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <button className=" btn btn-outline btn-primary uppercase text-sm font-semibold px-4 py-2 rounded">

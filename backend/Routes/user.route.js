@@ -6,6 +6,7 @@ const UserRouter = Router();
 UserRouter.post("/validateUser", async (req, res) => {
     try{
     const {username, password} = req.body
+    
     let response = await validateUser(username, password);
     res.send(response);
 }catch(error){
